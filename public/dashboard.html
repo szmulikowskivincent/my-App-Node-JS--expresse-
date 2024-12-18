@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Node.js Training</title>
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/"
+          ><i class="fas fa-home"></i> NodeJS Training</a
+        >
+        <div
+          style="margin-inline-start: 750px"
+          class="d-flex justify-content-center mb-3"
+        >
+          <div class="input-group" style="inline-size: 650px; block-size: 55px">
+            <span
+              class="input-group-text"
+              id="basic-addon1"
+              style="block-size: 55px"
+            >
+              <i class="fas fa-book"></i>
+            </span>
+            <input
+              type="text"
+              id="searchBar"
+              class="form-control"
+              placeholder="Search for a course..."
+              aria-label="Search for a course"
+              aria-describedby="searchButton"
+              style="block-size: 55px"
+            />
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              id="searchButton"
+              style="block-size: 55px"
+            >
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#"
+                ><i class="fas fa-tachometer-alt"></i> Dashboard</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/contact"
+                ><i class="fas fa-envelope"></i> Contact</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
+            </li>
+            <li class="nav-item">
+              <button id="logoutButton" class="btn btn-danger">
+                <i class="fas fa-sign-out-alt"></i> Déconnexion
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mt-4">
+      <h1>
+        <i class="fas fa-tachometer-alt"></i> Welcome to the Node.js Training
+        Dashboard
+      </h1>
+      <p class="text-muted">
+        Explore your available courses and track your progress.
+      </p>
+
+      <div class="card-body d-flex align-items-center">
+        <div id="userAvatar" class="avatar"></div>
+        <p class="card-text ms-3">Username: <strong id="username"></strong></p>
+      </div>
+
+      <br />
+
+      <h2><i class="fas fa-book"></i> Available Courses</h2>
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">
+                <i class="fas fa-graduation-cap"></i> Formation Node.js en ligne
+              </h5>
+              <p class="card-text">
+                Accédez à une formation complète en ligne pour maîtriser
+                Node.js.
+              </p>
+              <a
+                href="https://osw3.notion.site/Node-JS-111ddd41227c8067a378e983f839e711"
+                target="_blank"
+                class="btn btn-success"
+              >
+                <i class="fas fa-link"></i> Accéder à la formation
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">
+                <i class="fas fa-play-circle"></i> Introduction to Node.js
+              </h5>
+              <p class="card-text">
+                Learn the basics of Node.js, including modules, file system, and
+                events.
+              </p>
+              <a href="https://nodejs.org/fr" class="btn btn-primary"
+                ><i class="fas fa-arrow-right"></i> Start Course</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">
+                <i class="fas fa-play-circle"></i> Building a REST API
+              </h5>
+              <p class="card-text">
+                Understand how to create RESTful APIs using Express.js and
+                Node.js.
+              </p>
+              <a
+                href="https://nodejs.org/api/n-api.html"
+                class="btn btn-primary"
+                ><i class="fas fa-arrow-right"></i> Start Course</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">
+                <i class="fas fa-play-circle"></i> Authentication with JWT
+              </h5>
+              <p class="card-text">
+                Learn how to secure your applications with JSON Web Tokens.
+              </p>
+              <a
+                href="https://www.digitalocean.com/community/tutorials/nodejs-jwt-expressjs"
+                class="btn btn-primary"
+                ><i class="fas fa-arrow-right"></i> Start Course</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">
+                <i class="fas fa-play-circle"></i> Deploying Node.js Apps
+              </h5>
+              <p class="card-text">
+                Understand how to deploy Node.js applications to the cloud.
+              </p>
+              <a
+                href="https://www.jetbrains.com/webstorm/promo/?msclkid=d5ea3fe6301b11797af658877d3deac3&utm_source=bing&utm_medium=cpc&utm_campaign=EMEA_en_WEST_WebStorm_Nodejs_Search&utm_term=Node%20js%20software&utm_content=Node%20js%20software"
+                class="btn btn-primary"
+                ><i class="fas fa-arrow-right"></i> Start Course</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div
+      style="margin: 16.1cm; margin-block-start: -0.5cm"
+      id="coursesList"
+      class="row row-cols-1 row-cols-md-2 g-4"
+    ></div>
+
+    <br />
+
+    <h2 class="titleAddFormation">
+      <i class="fas fa-plus-circle"></i> Add a New Course
+    </h2>
+    <form id="addCourseForm" class="mb-4">
+      <div class="mb-3">
+        <label for="courseTitle" class="form-label">
+          <i class="fas fa-book"></i> Course Title
+        </label>
+        <input
+          type="text"
+          class="form-control"
+          id="courseTitle"
+          placeholder="Enter course title"
+          minlength="2"
+          maxlength="20"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="courseDescription" class="form-label">
+          <i class="fas fa-pen"></i> Course Description
+        </label>
+        <textarea
+          class="form-control"
+          id="courseDescription"
+          rows="3"
+          placeholder="Enter course description"
+          minlength="2"
+          maxlength="50"
+          required
+        ></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="courseLink" class="form-label">
+          <i class="fas fa-link"></i> Course Link
+        </label>
+        <input
+          type="url"
+          class="form-control"
+          id="courseLink"
+          placeholder="Enter course URL"
+          required
+        />
+      </div>
+      <button type="submit" class="btn btn-primary" id="submitButton" disabled>
+        <i class="fas fa-plus"></i> Add Course
+      </button>
+    </form>
+
+    <footer class="bg-light text-center text-lg-start mt-4">
+      <div class="container p-4">
+        <p class="text-muted">© 2024 NodeJS Training - All Rights Reserved</p>
+        <p class="text-muted">Created by Szmulikowski Vincent</p>
+      </div>
+    </footer>
+
+    <script src="js/searchCourses.js"></script>
+    <script src="js/loginAccesDashboard.js"></script>
+    <script src="js/addFormation.js"></script>
+    <script src="js/validateurs/validateurAddFormation.js"></script>
+    <script>
+      document.getElementById("username").textContent =
+        localStorage.getItem("username") || "Szmulikowski Vincent";
+    </script>
+  </body>
+</html>

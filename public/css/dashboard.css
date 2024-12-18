@@ -1,0 +1,43 @@
+.avatar {
+    inline-size: 50px;
+    block-size: 50px;
+    background-color: #dc3545;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    text-transform: uppercase;
+}
+
+.titleAddFormation {
+    margin: 16.5cm;
+    margin-block-start: -16cm;
+}
+
+#addCourseForm {
+    margin: 16.5cm;
+    max-inline-size: 600px;
+    text-align: start;
+    margin-block-start: -16cm;
+}
+
+#addCourseForm .form-label {
+    font-weight: bold;
+}
+
+#addCourseForm .form-control {
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#addCourseForm button {
+    display: block;
+    inline-size: 100%;
+    margin-block-start: 15px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
