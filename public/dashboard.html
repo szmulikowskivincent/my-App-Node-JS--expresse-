@@ -200,62 +200,67 @@
 
     <br />
 
-    <div
-      style="margin: 16.1cm; margin-block-start: -0.5cm"
-      id="coursesList"
-      class="row row-cols-1 row-cols-md-2 g-4"
-    ></div>
+    <div class="container mt-4">
+      <div id="coursesList" class="row row-cols-1 row-cols-md-2 g-4"></div>
+    </div>
 
     <br />
 
-    <h2 class="titleAddFormation">
-      <i class="fas fa-plus-circle"></i> Add a New Course
-    </h2>
-    <form id="addCourseForm" class="mb-4">
-      <div class="mb-3">
-        <label for="courseTitle" class="form-label">
-          <i class="fas fa-book"></i> Course Title
-        </label>
-        <input
-          type="text"
-          class="form-control"
-          id="courseTitle"
-          placeholder="Enter course title"
-          minlength="2"
-          maxlength="20"
-          required
-        />
-      </div>
-      <div class="mb-3">
-        <label for="courseDescription" class="form-label">
-          <i class="fas fa-pen"></i> Course Description
-        </label>
-        <textarea
-          class="form-control"
-          id="courseDescription"
-          rows="3"
-          placeholder="Enter course description"
-          minlength="2"
-          maxlength="50"
-          required
-        ></textarea>
-      </div>
-      <div class="mb-3">
-        <label for="courseLink" class="form-label">
-          <i class="fas fa-link"></i> Course Link
-        </label>
-        <input
-          type="url"
-          class="form-control"
-          id="courseLink"
-          placeholder="Enter course URL"
-          required
-        />
-      </div>
-      <button type="submit" class="btn btn-primary" id="submitButton" disabled>
-        <i class="fas fa-plus"></i> Add Course
-      </button>
-    </form>
+    <div class="container mt-4">
+      <h2 class="titleAddFormation">
+        <i class="fas fa-plus-circle"></i> Add a New Course
+      </h2>
+      <form id="addCourseForm" class="mb-4">
+        <div class="mb-3">
+          <label for="courseTitle" class="form-label">
+            <i class="fas fa-book"></i> Course Title
+          </label>
+          <input
+            type="text"
+            class="form-control"
+            id="courseTitle"
+            placeholder="Enter course title"
+            minlength="2"
+            maxlength="20"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="courseDescription" class="form-label">
+            <i class="fas fa-pen"></i> Course Description
+          </label>
+          <textarea
+            class="form-control"
+            id="courseDescription"
+            rows="3"
+            placeholder="Enter course description"
+            minlength="2"
+            maxlength="50"
+            required
+          ></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="courseLink" class="form-label">
+            <i class="fas fa-link"></i> Course Link
+          </label>
+          <input
+            type="url"
+            class="form-control"
+            id="courseLink"
+            placeholder="Enter course URL"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          id="submitButton"
+          disabled
+        >
+          <i class="fas fa-plus"></i> Add Course
+        </button>
+      </form>
+    </div>
 
     <footer class="bg-light text-center text-lg-start mt-4">
       <div class="container p-4">
