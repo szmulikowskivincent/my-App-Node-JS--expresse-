@@ -1,3 +1,7 @@
+.custom-position {
+    margin-block-start: -6cm;
+}
+
 .error-message {
     color: red;
     font-size: 0.9em;
