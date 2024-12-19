@@ -5,6 +5,31 @@ document.addEventListener("DOMContentLoaded", function () {
   const passwordInput = document.getElementById("password");
   const passwordError = document.getElementById("password-error");
 
+  const toastContainer = document.getElementById("toast-container");
+
+  function showToast(message, isSuccess, callback) {
+    const toast = document.createElement("div");
+    toast.textContent = message;
+    toast.style.padding = "10px 20px";
+    toast.style.borderRadius = "5px";
+    toast.style.marginBottom = "10px";
+    toast.style.color = "white";
+    toast.style.backgroundColor = isSuccess ? "green" : "red";
+    toast.style.boxShadow = "0 2px 5px rgba(0,0,0,0.2)";
+    toast.style.opacity = "1";
+    toast.style.transition = "opacity 0.5s ease";
+
+    toastContainer.appendChild(toast);
+
+    setTimeout(() => {
+      toast.style.opacity = "0";
+      setTimeout(() => {
+        toast.remove();
+        if (callback) callback();
+      }, 500);
+    }, 3000);
+  }
+
   function validateUsername() {
     const username = usernameInput.value;
 
@@ -66,6 +91,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!isUsernameValid || !isPasswordValid) {
       event.preventDefault();
+      showToast(
+        "Échec de l'enregistrement : veuillez corriger les erreurs.",
+        false
+      );
+    } else {
+      event.preventDefault();
+
+      showToast("Enregistrement réussi !", true, () => {
+        window.location.href = "/login";
+      });
     }
   });
 
