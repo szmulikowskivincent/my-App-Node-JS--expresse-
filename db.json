@@ -42,9 +42,9 @@
       "link": "https://angular.dev/"
     },
     {
-      "title": "Angular",
-      "description": "Débeuguage et test.",
-      "link": "https://angular.dev/"
+      "title": "Nouveau cours",
+      "description": "Description du cours",
+      "link": "http://lien.com"
     }
   ]
 }
