@@ -9,7 +9,6 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
 
   const toastContainer = document.getElementById("toast-container");
 
-  // Réinitialiser les messages d'erreur et les classes de validation
   usernameError.innerText = "";
   passwordError.innerText = "";
   usernameInput.classList.remove("invalid", "valid");
@@ -20,7 +19,6 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
 
   let isValid = true;
 
-  // Validation du nom d'utilisateur
   if (username === "") {
     usernameError.innerText = "Le nom d'utilisateur est requis.";
     usernameInput.classList.add("invalid");
@@ -29,7 +27,6 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
     usernameInput.classList.add("valid");
   }
 
-  // Validation du mot de passe
   if (password === "") {
     passwordError.innerText = "Le mot de passe est requis.";
     passwordInput.classList.add("invalid");
@@ -48,7 +45,6 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
     passwordInput.classList.add("valid");
   }
 
-  // Fonction pour afficher un toast
   function showToast(message, isSuccess, callback) {
     const toast = document.createElement("div");
     toast.textContent = message;
@@ -72,15 +68,33 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
     }, 3000);
   }
 
-  // Si le formulaire est valide
   if (isValid) {
     localStorage.setItem("username", username);
     localStorage.setItem("password", "**********");
 
     showToast("Connexion réussie !", true, () => {
-      window.location.href = "/dashboard"; // Redirection vers le dashboard
+      window.location.href = "/dashboard";
     });
   } else {
     showToast("Échec de la connexion : veuillez corriger les erreurs.", false);
   }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const passwordField = document.getElementById("password");
+  const togglePassword = document.getElementById("togglePassword");
+
+  togglePassword.addEventListener("click", function () {
+    const currentType = passwordField.type;
+    passwordField.type = currentType === "password" ? "text" : "password";
+
+    const icon = togglePassword.querySelector("i");
+    if (passwordField.type === "password") {
+      icon.classList.remove("fa-eye-slash");
+      icon.classList.add("fa-eye");
+    } else {
+      icon.classList.remove("fa-eye");
+      icon.classList.add("fa-eye-slash");
+    }
+  });
 });
