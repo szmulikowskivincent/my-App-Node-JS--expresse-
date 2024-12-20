@@ -36,12 +36,24 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (valid) {
+      const maskedPassword = maskPassword(password);
       localStorage.setItem("username", username);
-      localStorage.setItem("password", password);
+      localStorage.setItem("password", maskedPassword);
     } else {
       event.preventDefault();
     }
   });
+
+  function maskPassword(password) {
+    const symbols = ["*", "/", "@", "#", "$", "%", "&", "!"];
+    let masked = "";
+
+    for (let i = 0; i < password.length; i++) {
+      masked += symbols[i % symbols.length];
+    }
+
+    return masked;
+  }
 
   togglePassword.addEventListener("click", function () {
     const currentType = passwordInput.type;
