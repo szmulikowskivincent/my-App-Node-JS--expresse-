@@ -93,4 +93,13 @@ document.addEventListener("DOMContentLoaded", function () {
       icon.classList.add("fa-eye-slash");
     }
   });
+
+  // Redirection si le champ est vide au focus
+  passwordField.addEventListener("focus", function () {
+    if (passwordField.value.trim() === "") {
+      showToast("Redirection vers la page d'inscription...", false, () => {
+        window.location.href = "/register";
+      });
+    }
+  });
 });
