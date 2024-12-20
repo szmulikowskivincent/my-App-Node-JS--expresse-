@@ -2,9 +2,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const calendarContainer = document.getElementById("calendar");
   const modalMessage = document.getElementById("modal-message");
 
-  // Example of unavailable and available dates
-  const unavailableDates = [5, 10, 15, 20]; // Non-disponible
-  const availableDates = [3, 7, 13, 18]; // Disponible
+  const unavailableDates = [5, 10, 15, 20];
+  const availableDates = [3, 7, 13, 18];
+
+  const formations = {
+    3: "Angular Basics - 10:00 AM",
+    7: "Angular Advanced - 2:00 PM",
+    13: "Angular for Professionals - 11:00 AM",
+    18: "Angular Workshop - 1:00 PM",
+  };
 
   function generateCalendar(month, year) {
     const firstDayOfMonth = new Date(year, month, 1);
@@ -12,22 +18,22 @@ document.addEventListener("DOMContentLoaded", function () {
     const numDaysInMonth = lastDayOfMonth.getDate();
     const firstDayOfWeek = firstDayOfMonth.getDay();
 
-    // Empty the calendar
     calendarContainer.innerHTML = "";
 
-    // Add empty divs for the days before the 1st of the month
     for (let i = 0; i < firstDayOfWeek; i++) {
       const emptyDiv = document.createElement("div");
       calendarContainer.appendChild(emptyDiv);
     }
 
-    // Add the days of the current month
     for (let i = 1; i <= numDaysInMonth; i++) {
       const dayDiv = document.createElement("div");
       dayDiv.classList.add("day");
       dayDiv.textContent = i;
 
-      // Color coding based on availability
+      if (formations[i]) {
+        dayDiv.setAttribute("title", formations[i]);
+      }
+
       if (unavailableDates.includes(i)) {
         dayDiv.classList.add("unavailable");
       } else if (availableDates.includes(i)) {
@@ -43,7 +49,6 @@ document.addEventListener("DOMContentLoaded", function () {
         dayDiv.classList.add("today");
       }
 
-      // Handle click to show modal message
       dayDiv.addEventListener("click", () => {
         let status = "unavailable";
         if (availableDates.includes(i)) {
@@ -56,7 +61,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }.
         `;
         modalMessage.innerHTML = alertMessage;
-        // Show modal message dynamically
       });
       calendarContainer.appendChild(dayDiv);
     }
