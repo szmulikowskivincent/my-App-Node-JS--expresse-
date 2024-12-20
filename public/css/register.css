@@ -6,6 +6,18 @@ body {
     margin-block-start: -6cm;
 }
 
+input {
+    border-color: #ccc;
+}
+
+input.valid {
+    border-color: green;
+}
+
+input.invalid {
+    border-color: red;
+}
+
 .error-message {
     color: red;
     font-size: 0.875rem;
@@ -13,12 +25,11 @@ body {
     display: block;
 }
 
-input:invalid {
-    border-color: red;
-}
-
-input:valid {
-    border-color: green;
+#toast-container {
+    position: fixed;
+    inset-block-start: 20px;
+    inset-inline-end: 20px;
+    z-index: 1000;
 }
 
 footer {

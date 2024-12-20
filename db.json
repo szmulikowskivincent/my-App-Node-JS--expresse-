@@ -20,7 +20,7 @@
   "courses": [
     {
       "title": "Angular",
-      "description": "Test et manipulation des components et services.",
+      "description": "Test.",
       "link": "https://angular.dev/"
     }
   ]
