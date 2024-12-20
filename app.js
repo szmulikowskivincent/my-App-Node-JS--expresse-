@@ -12,12 +12,14 @@ const authRoutes = require("./routes/authRoutes");
 const contactRoutes = require("./routes/contactRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
 const coursesRoutes = require("./routes/courseRoutes");
+const registerRoutes = require("./routes/registerRoutes");
 
 app.use("/", indexRoutes);
 app.use("/", authRoutes);
 app.use("/", contactRoutes);
 app.use("/", dashboardRoutes);
 app.use("/", coursesRoutes);
+app.use("/", registerRoutes);
 
 app.use("/js", express.static(path.join(__dirname, "js")));
 app.use("/css", express.static(path.join(__dirname, "css")));

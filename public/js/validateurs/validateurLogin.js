@@ -9,7 +9,6 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
 
   const toastContainer = document.getElementById("toast-container");
 
-  // Réinitialise les erreurs
   usernameError.innerText = "";
   passwordError.innerText = "";
 
@@ -46,27 +45,23 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
 
     toastContainer.appendChild(toast);
 
-    // Disparition après 3 secondes
     setTimeout(() => {
       toast.style.opacity = "0";
       setTimeout(() => {
         toast.remove();
-        if (callback) callback(); // Exécute la redirection si un callback est fourni
+        if (callback) callback();
       }, 500);
     }, 3000);
   }
 
   if (isValid) {
-    // Simule un stockage local pour la démonstration
     localStorage.setItem("username", username);
     localStorage.setItem("password", "**********");
 
-    // Affiche le toast vert et redirige vers le tableau de bord
     showToast("Connexion réussie !", true, () => {
-      window.location.href = "/dashboard"; // Remplacez "/dashboard" par l'URL de votre tableau de bord
+      window.location.href = "/dashboard";
     });
   } else {
-    // Affiche le toast rouge pour l'échec
     showToast("Échec de la connexion : veuillez corriger les erreurs.", false);
   }
 });

@@ -12,11 +12,13 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
     "ejs": "^3.1.10",
     "exo.3": "file:",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "fs": "^0.0.1-security"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"
