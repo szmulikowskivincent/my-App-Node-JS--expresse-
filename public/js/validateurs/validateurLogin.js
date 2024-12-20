@@ -1,3 +1,6 @@
+// Déclarer le toastContainer au début
+const toastContainer = document.getElementById("toast-container");
+
 document.getElementById("loginForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -6,8 +9,6 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
 
   const usernameError = document.getElementById("usernameError");
   const passwordError = document.getElementById("passwordError");
-
-  const toastContainer = document.getElementById("toast-container");
 
   usernameError.innerText = "";
   passwordError.innerText = "";
@@ -19,6 +20,7 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
 
   let isValid = true;
 
+  // Vérification des champs obligatoires
   if (username === "") {
     usernameError.innerText = "Le nom d'utilisateur est requis.";
     usernameInput.classList.add("invalid");
@@ -31,55 +33,55 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
     passwordError.innerText = "Le mot de passe est requis.";
     passwordInput.classList.add("invalid");
     isValid = false;
-  } else if (password.length < 6) {
-    passwordError.innerText =
-      "Le mot de passe doit comporter au moins 6 caractères.";
-    passwordInput.classList.add("invalid");
-    isValid = false;
-  } else if (password.length > 15) {
-    passwordError.innerText =
-      "Le mot de passe ne doit pas dépasser 15 caractères.";
-    passwordInput.classList.add("invalid");
-    isValid = false;
-  } else {
-    passwordInput.classList.add("valid");
-  }
-
-  function showToast(message, isSuccess, callback) {
-    const toast = document.createElement("div");
-    toast.textContent = message;
-    toast.style.padding = "10px 20px";
-    toast.style.borderRadius = "5px";
-    toast.style.marginBottom = "10px";
-    toast.style.color = "white";
-    toast.style.backgroundColor = isSuccess ? "green" : "red";
-    toast.style.boxShadow = "0 2px 5px rgba(0,0,0,0.2)";
-    toast.style.opacity = "1";
-    toast.style.transition = "opacity 0.5s ease";
-
-    toastContainer.appendChild(toast);
-
-    setTimeout(() => {
-      toast.style.opacity = "0";
-      setTimeout(() => {
-        toast.remove();
-        if (callback) callback();
-      }, 500);
-    }, 3000);
   }
 
   if (isValid) {
-    localStorage.setItem("username", username);
-    localStorage.setItem("password", "**********");
+    // Vérification uniquement du nom d'utilisateur dans le localStorage
+    const storedUsername = localStorage.getItem("username");
 
-    showToast("Connexion réussie !", true, () => {
-      window.location.href = "/dashboard";
-    });
+    // Si le nom d'utilisateur saisi correspond au nom d'utilisateur stocké
+    if (username === storedUsername) {
+      showToast("Connexion réussie !", true, () => {
+        window.location.href = "/dashboard"; // Redirection vers le tableau de bord
+      });
+    } else {
+      showToast("Nom d'utilisateur incorrect.", false);
+    }
   } else {
     showToast("Échec de la connexion : veuillez corriger les erreurs.", false);
   }
 });
 
+// Fonction pour afficher un message toast
+function showToast(message, isSuccess, callback) {
+  if (!toastContainer) {
+    console.error("Toast container is not available in the DOM.");
+    return; // Sortie si le conteneur est absent
+  }
+
+  const toast = document.createElement("div");
+  toast.textContent = message;
+  toast.style.padding = "10px 20px";
+  toast.style.borderRadius = "5px";
+  toast.style.marginBottom = "10px";
+  toast.style.color = "white";
+  toast.style.backgroundColor = isSuccess ? "green" : "red";
+  toast.style.boxShadow = "0 2px 5px rgba(0,0,0,0.2)";
+  toast.style.opacity = "1";
+  toast.style.transition = "opacity 0.5s ease";
+
+  toastContainer.appendChild(toast);
+
+  setTimeout(() => {
+    toast.style.opacity = "0";
+    setTimeout(() => {
+      toast.remove();
+      if (callback) callback();
+    }, 500);
+  }, 3000);
+}
+
+// Fonction pour basculer la visibilité du mot de passe
 document.addEventListener("DOMContentLoaded", function () {
   const passwordField = document.getElementById("password");
   const togglePassword = document.getElementById("togglePassword");
