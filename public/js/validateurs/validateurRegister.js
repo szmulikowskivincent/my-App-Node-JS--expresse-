@@ -1,131 +1,52 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("register-form");
   const usernameInput = document.getElementById("username");
-  const usernameError = document.getElementById("username-error");
-
   const passwordInput = document.getElementById("password");
+  const usernameError = document.getElementById("username-error");
   const passwordError = document.getElementById("password-error");
 
-  const toastContainer = document.getElementById("toast-container");
+  // Désactiver la validation HTML5 native pour gérer les messages nous-mêmes
+  usernameInput.removeAttribute("required");
+  passwordInput.removeAttribute("required");
 
-  function showToast(message, color) {
-    const toast = document.createElement("div");
-    toast.textContent = message;
-    toast.style.padding = "10px 20px";
-    toast.style.borderRadius = "5px";
-    toast.style.marginBottom = "10px";
-    toast.style.color = "white";
-    toast.style.backgroundColor = color;
-    toast.style.boxShadow = "0 2px 5px rgba(0,0,0,0.2)";
-    toast.style.opacity = "1";
-    toast.style.transition = "opacity 0.5s ease";
-
-    toastContainer.appendChild(toast);
-
-    setTimeout(() => {
-      toast.style.opacity = "0";
-      setTimeout(() => {
-        toast.remove();
-      }, 500);
-    }, 3000);
-  }
-
-  async function fetchUsers() {
-    try {
-      const response = await fetch("/db.json");
-      if (!response.ok)
-        throw new Error("Erreur lors du chargement des utilisateurs");
-      const data = await response.json();
-      return data.users || [];
-    } catch (error) {
-      console.error(error.message);
-      showToast("Erreur : Impossible de charger les utilisateurs.", "red");
-      return [];
-    }
-  }
-
-  async function doesUserExist(username) {
-    const users = await fetchUsers();
-    return users.some((user) => user.username === username);
-  }
-
-  async function validateUsername() {
-    const username = usernameInput.value;
+  form.addEventListener("submit", function (event) {
     let valid = true;
 
+    // Réinitialiser les messages d'erreur et les styles
     usernameError.textContent = "";
+    passwordError.textContent = "";
+    usernameInput.style.borderColor = "";
+    passwordInput.style.borderColor = "";
 
+    // Valider le username
+    const username = usernameInput.value;
     if (!username.includes("@")) {
-      usernameError.textContent = "Le nom d'utilisateur doit contenir un '@'.";
-      usernameError.style.color = "red";
-      valid = false;
-    } else if (username.length < 5) {
-      usernameError.textContent =
-        "Le nom d'utilisateur doit comporter au moins 5 caractères.";
-      usernameError.style.color = "red";
-      valid = false;
-    } else if (username.length > 50) {
-      usernameError.textContent =
-        "Le nom d'utilisateur ne peut pas dépasser 50 caractères.";
-      usernameError.style.color = "red";
+      usernameError.textContent = 'Le nom d\'utilisateur doit contenir un "@"';
+      usernameInput.style.borderColor = "red"; // Bordure rouge pour erreur
       valid = false;
     } else {
-      const userExists = await doesUserExist(username);
-      if (userExists) {
-        usernameError.textContent =
-          "Cet utilisateur existe déjà. Veuillez en choisir un autre.";
-        usernameError.style.color = "orange";
-        valid = false;
-      }
+      usernameInput.style.borderColor = "green"; // Bordure verte pour validité
     }
 
-    return valid;
-  }
-
-  function validatePassword() {
+    // Valider le mot de passe
     const password = passwordInput.value;
-    let valid = true;
-
-    passwordError.textContent = "";
-
-    if (password.length < 8) {
+    if (password.length < 5) {
       passwordError.textContent =
-        "Le mot de passe doit comporter au moins 8 caractères.";
-      passwordError.style.color = "red";
+        "Le mot de passe doit contenir au moins 5 caractères";
+      passwordInput.style.borderColor = "red"; // Bordure rouge pour erreur
       valid = false;
-    } else if (password.length > 20) {
+    } else if (password.length > 15) {
       passwordError.textContent =
-        "Le mot de passe ne peut pas dépasser 20 caractères.";
-      passwordError.style.color = "red";
+        "Le mot de passe ne doit pas dépasser 15 caractères";
+      passwordInput.style.borderColor = "red"; // Bordure rouge pour erreur
       valid = false;
+    } else {
+      passwordInput.style.borderColor = "green"; // Bordure verte pour validité
     }
 
-    return valid;
-  }
-
-  document
-    .querySelector("#register-button")
-    .addEventListener("click", async function (event) {
+    // Si le formulaire est invalide, empêcher sa soumission
+    if (!valid) {
       event.preventDefault();
-
-      const isUsernameValid = await validateUsername();
-      const isPasswordValid = validatePassword();
-
-      if (!isUsernameValid || !isPasswordValid) {
-        showToast(
-          "Échec de l'enregistrement : vérifiez vos informations.",
-          "red"
-        );
-        return;
-      }
-
-      const userExists = await doesUserExist(usernameInput.value);
-      if (userExists) {
-        showToast(
-          "Cet utilisateur existe déjà. Veuillez en choisir un autre.",
-          "orange"
-        );
-      } else {
-        showToast("Enregistrement réussi !", "green");
-      }
-    });
+    }
+  });
 });
