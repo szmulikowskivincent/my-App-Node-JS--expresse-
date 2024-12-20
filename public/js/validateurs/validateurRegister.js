@@ -9,13 +9,11 @@ document.addEventListener("DOMContentLoaded", function () {
   form.addEventListener("submit", function (event) {
     let valid = true;
 
-    // Reset errors
     usernameError.textContent = "";
     passwordError.textContent = "";
     usernameInput.style.borderColor = "";
     passwordInput.style.borderColor = "";
 
-    // Validation
     const username = usernameInput.value;
     const password = passwordInput.value;
 
@@ -37,16 +35,14 @@ document.addEventListener("DOMContentLoaded", function () {
       passwordInput.style.borderColor = "green";
     }
 
-    // Stockage si valide
     if (valid) {
       localStorage.setItem("username", username);
-      localStorage.setItem("password", password); // ATTENTION : stockage en clair
+      localStorage.setItem("password", password);
     } else {
       event.preventDefault();
     }
   });
 
-  // Toggle password visibility
   togglePassword.addEventListener("click", function () {
     const currentType = passwordInput.type;
     passwordInput.type = currentType === "password" ? "text" : "password";
