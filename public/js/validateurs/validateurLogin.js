@@ -1,4 +1,3 @@
-// Déclarer le toastContainer au début
 const toastContainer = document.getElementById("toast-container");
 
 document.getElementById("loginForm").addEventListener("submit", function (e) {
@@ -20,7 +19,6 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
 
   let isValid = true;
 
-  // Vérification des champs obligatoires
   if (username === "") {
     usernameError.innerText = "Le nom d'utilisateur est requis.";
     usernameInput.classList.add("invalid");
@@ -36,13 +34,11 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
   }
 
   if (isValid) {
-    // Vérification uniquement du nom d'utilisateur dans le localStorage
     const storedUsername = localStorage.getItem("username");
 
-    // Si le nom d'utilisateur saisi correspond au nom d'utilisateur stocké
     if (username === storedUsername) {
       showToast("Connexion réussie !", true, () => {
-        window.location.href = "/dashboard"; // Redirection vers le tableau de bord
+        window.location.href = "/dashboard";
       });
     } else {
       showToast("Nom d'utilisateur incorrect.", false);
@@ -52,11 +48,10 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
   }
 });
 
-// Fonction pour afficher un message toast
 function showToast(message, isSuccess, callback) {
   if (!toastContainer) {
     console.error("Toast container is not available in the DOM.");
-    return; // Sortie si le conteneur est absent
+    return;
   }
 
   const toast = document.createElement("div");
@@ -81,7 +76,6 @@ function showToast(message, isSuccess, callback) {
   }, 3000);
 }
 
-// Fonction pour basculer la visibilité du mot de passe
 document.addEventListener("DOMContentLoaded", function () {
   const passwordField = document.getElementById("password");
   const togglePassword = document.getElementById("togglePassword");
